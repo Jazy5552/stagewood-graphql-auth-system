@@ -1,0 +1,23 @@
+# Meant to be used with vscode
+version: '3.3'
+services:
+  app:
+    image: node:14.5-stretch
+    ports:
+      - "3000:3000" # Frontend Server
+      - "4000:4000" # Backend GraphQL Server
+      - "5555:5555" # Prisma Studio
+    volumes:
+      - "./:/app"
+    command: /bin/sh -c "while sleep 1000; do :; done"
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: stagewood-auth
+      MYSQL_USER: stagewood-auth
+      MYSQL_PASSWORD: SECRET
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
+    volumes:
+      - "backend-db:/var/lib/mysql"
+volumes:
+  backend-db:
