@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url = env("PRISMA_DS_URL")
+  url      = env("PRISMA_DS_URL")
 }
 
 generator client {
@@ -8,8 +8,20 @@ generator client {
 }
 
 model Link {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
   description String
-  url String
+  url         String
+  postedBy    User?    @relation(fields: [postedById], references: [id])
+  postedById  Int?
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  username  String   @unique
+  email     String   @unique
+  password  String
+  links     Link[]
+  createdAt DateTime @default(now())
 }
