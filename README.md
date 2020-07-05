@@ -8,6 +8,7 @@ You will need to install VSCode, Docker, and the [Remote - Containers](https://m
 **Install the `backend` dependencies and start the server:**
 ```sh
 cd stagewood-auth-system-backend
+mv .env.example .env # Set any app env variables as appropriate
 mv prisma/.env.example prisma/.env # Set any prisma env variables as appropriate
 yarn install
 yarn prisma # Migrates the database and generates the prisma client
