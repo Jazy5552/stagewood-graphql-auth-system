@@ -62,7 +62,7 @@ function post(parent, args, context, info) {
 }
 
 module.exports = {
-  signup,
+  register,
   login,
   post,
 }
