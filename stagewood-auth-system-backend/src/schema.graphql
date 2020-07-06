@@ -1,6 +1,6 @@
 type Query {
   info: String!,
-  feed(filter: String, skip: Int, take: Int): Feed!,
+  feed(filter: String, skip: Int, take: Int, orderBy: LinkOrderByInput): Feed!,
   link(id: ID!): Link,
   "Self user information, user authentication required"
   user: User,
@@ -37,4 +37,15 @@ type User {
   username: String!,
   name: String!,
   links: [Link!]!,
+}
+
+input LinkOrderByInput {
+  description: Sort,
+  url: Sort,
+  createdAt: Sort,
+}
+
+enum Sort {
+  asc,
+  desc,
 }
