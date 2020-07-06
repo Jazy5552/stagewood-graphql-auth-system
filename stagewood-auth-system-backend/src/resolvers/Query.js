@@ -5,7 +5,19 @@ function info() {
 }
 
 function feed(parent, args, context) {
-  return context.prisma.link.findMany();
+  // Hope prisma sanitizes where input
+  const where = args.filter
+    ? {
+      OR: [
+        { description: { contains: args.filter } },
+        { url: { contains: args.filter } },
+      ],
+    }
+    : {};
+
+  return context.prisma.link.findMany({
+    where,
+  });
 }
 
 function link(parent, args, context) {
