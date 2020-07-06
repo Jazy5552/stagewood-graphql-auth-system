@@ -1,6 +1,6 @@
 type Query {
   info: String!,
-  feed(filter: String, skip: Int, take: Int): [Link!]!,
+  feed(filter: String, skip: Int, take: Int): Feed!,
   link(id: ID!): Link,
   "Self user information, user authentication required"
   user: User,
@@ -11,6 +11,11 @@ type Mutation {
   post(url: String!, description: String!): Link!,
   register(email: String!, password: String!, username: String!, name: String!): AuthPayLoad,
   login(email: String!, password: String!): AuthPayLoad,
+}
+
+type Feed {
+  links: [Link!]!,
+  count: Int!,
 }
 
 type Link {
