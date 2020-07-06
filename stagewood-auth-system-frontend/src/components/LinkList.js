@@ -4,12 +4,14 @@ import { gql } from 'apollo-boost';
 import { Query } from 'react-apollo';
 
 const FEED_QUERY = gql`
-  {
+  query {
     feed {
-      id
-      url
-      description
-    }
+      links {
+        id,
+        url,
+        description,
+      },
+    },
   }
 `;
 
@@ -21,7 +23,7 @@ class LinkList extends Component {
           if (loading) return <div>Fetching</div>;
           if (error) return <div>Error: {error}</div>
 
-          const linksToRender = data.feed;
+          const linksToRender = data.feed.links;
 
           return (
             <div>
