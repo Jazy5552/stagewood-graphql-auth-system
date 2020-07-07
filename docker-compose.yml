@@ -10,8 +10,6 @@ services:
       APP_SECRET: "Jazy-is-aw3some"
     ports:
       - "4000:4000"
-    volumes:
-      - "backend-db:/db"
 
   stagewood-auth-frontend:
     build:
