@@ -13,7 +13,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { AUTH_TOKEN } from './constants';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: process.env.REACT_APP_HTTP_LINK_URL ?? 'http://localhost:4000',
 });
 
 const authLink = setContext((request, {headers}) => {
