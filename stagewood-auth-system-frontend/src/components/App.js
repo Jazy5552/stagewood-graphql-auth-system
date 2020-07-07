@@ -4,6 +4,7 @@ import Error404 from 'components/errors/Error404';
 import Header from 'components/Header';
 import { Switch, Route } from 'react-router-dom';
 import 'styles/App.css';
+import Login from './Login';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <div className="ph3 pv1 background-gray">
         <Switch>
           <Route exact path="/" component={LinkList} />
+          <Route exact path="/login" component={Login} />
           <Route path="/" component={Error404} />
         </Switch>
       </div>

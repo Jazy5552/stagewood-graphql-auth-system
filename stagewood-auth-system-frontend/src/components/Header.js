@@ -12,16 +12,8 @@ class Header extends Component {
             Home
           </Link>
           <div className="ml1">|</div>
-          <Link to="/register" className="ml1 no-underline black">
-            Register
-          </Link>
-          <div className="ml1">|</div>
           <Link to="/login" className="ml1 no-underline black">
             Login
-          </Link>
-          <div className="ml1">|</div>
-          <Link to="/profile" className="ml1 no-underline black">
-            Profile
           </Link>
         </div>
       </div>
