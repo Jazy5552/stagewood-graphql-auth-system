@@ -4,7 +4,7 @@ import Header from 'components/Header';
 import { Switch, Route } from 'react-router-dom';
 import 'styles/App.css';
 import Login from './Login';
-import UserProfile from './UserProfile';
+import UserGreeting from './UserGreeting';
 
 function App() {
   return (
@@ -12,8 +12,9 @@ function App() {
       <Header />
       <div className="ph3 pv1 background-gray">
         <Switch>
-          <Route exact path="/" component={UserProfile} />
+          <Route exact path="/" component={UserGreeting} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/profile" component={UserProfile} />
           <Route path="/" component={Error404} />
         </Switch>
       </div>

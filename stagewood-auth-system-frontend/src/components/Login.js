@@ -84,6 +84,7 @@ class Login extends React.Component {
             onChange={e => this.setState({ email: e.target.value })}
             type="email"
             placeholder="Email"
+            autoComplete="on"
           />
           <input
             className="mb2"
@@ -91,6 +92,7 @@ class Login extends React.Component {
             onChange={e => this.setState({ password: e.target.value })}
             type="password"
             placeholder="Password"
+            autoComplete="on"
           />
         </div>
         <div className="flex mt3">
