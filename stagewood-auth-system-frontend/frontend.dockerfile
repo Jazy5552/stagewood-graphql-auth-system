@@ -8,6 +8,7 @@ RUN yarn
 
 COPY . ./
 
+ARG REACT_APP_HTTP_LINK_URL
 RUN yarn build
 
 FROM nginx:1.19
