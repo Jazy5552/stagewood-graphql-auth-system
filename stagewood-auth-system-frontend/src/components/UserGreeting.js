@@ -4,11 +4,11 @@ import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo';
 
 const GET_USER_DATA = gql`
-query UserData {
-  user {
-    name,
+  query UserData {
+    user {
+      name,
+    }
   }
-}
 `;
 
 export default function UserProfile() {

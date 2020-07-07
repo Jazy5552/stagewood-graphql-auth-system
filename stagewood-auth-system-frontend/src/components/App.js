@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import 'styles/App.css';
 import Login from './Login';
 import UserGreeting from './UserGreeting';
+import UserProfile from './UserProfile';
 
 function App() {
   return (
