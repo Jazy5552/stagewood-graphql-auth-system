@@ -118,8 +118,10 @@ class Login extends React.Component {
     );
   }
 
-  confirm = async () => {
-
+  confirm = async (data) => {
+    const { token } = this.state.login ? data.login : data.register
+    this.saveUserData(token);
+    this.props.history.push('/');
   }
 
   saveUserData = token => {
