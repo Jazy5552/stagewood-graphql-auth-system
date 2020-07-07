@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App center w85">
       <Header />
-      <div className="ph3 pv1 background-gray">
+      <div className="ph3 pv1 bg-washed-blue">
         <Switch>
           <Route exact path="/" component={UserGreeting} />
           <Route exact path="/login" component={Login} />
