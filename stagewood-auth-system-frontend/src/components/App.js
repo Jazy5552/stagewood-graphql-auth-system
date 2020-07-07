@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import { Switch, Route } from 'react-router-dom';
 import 'styles/App.css';
 import Login from './Login';
+import UserProfile from './UserProfile';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Header />
       <div className="ph3 pv1 background-gray">
         <Switch>
-          <Route exact path="/" component={LinkList} />
+          <Route exact path="/" component={UserProfile} />
           <Route exact path="/login" component={Login} />
           <Route path="/" component={Error404} />
         </Switch>
