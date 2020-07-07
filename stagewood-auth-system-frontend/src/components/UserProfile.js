@@ -15,7 +15,7 @@ const GET_USER_DATA = gql`
 
 export default function UserProfile() {
   const authToken = localStorage.getItem(AUTH_TOKEN);
-  const {loading, error, data} = useQuery(GET_USER_DATA);
+  const {loading, error, data} = useQuery(GET_USER_DATA, {fetchPolicy: 'network-only'});
 
   if (!authToken) {
     this.props.history.push('/login');
