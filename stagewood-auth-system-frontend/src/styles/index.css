@@ -18,3 +18,11 @@ code {
 .w85 {
   width: 85%;
 }
+
+.error {
+  color: red;
+}
+
+.error--container {
+  height: 2em;
+}

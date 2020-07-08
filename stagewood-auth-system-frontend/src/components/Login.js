@@ -42,6 +42,7 @@ class Login extends React.Component {
     username: '',
     email: '',
     password: '',
+    errorMessage: '',
   }
 
   render() {
@@ -51,6 +52,7 @@ class Login extends React.Component {
       username,
       email,
       password,
+      errorMessage,
     } = this.state;
 
     return (
@@ -59,13 +61,14 @@ class Login extends React.Component {
         onSubmit={e => e.preventDefault()}
       >
         <h4 className="mv3">{login ? 'Login' : 'Register'}</h4>
+        <div className="mv1 error error--container">{errorMessage}</div>
         <div className="flex flex-column mt3">
           {!login && (
             <>
               <input
                 className="mb2 pa1"
                 value={name}
-                onChange={e => this.setState({ name: e.target.value })}
+                onChange={e => this.setInputState({ name: e.target.value })}
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -73,7 +76,7 @@ class Login extends React.Component {
               <input
                 className="mb2 pa1"
                 value={username}
-                onChange={e => this.setState({ username: e.target.value })}
+                onChange={e => this.setInputState({ username: e.target.value })}
                 type="text"
                 placeholder="Username"
                 name="username"
@@ -83,7 +86,7 @@ class Login extends React.Component {
           <input
             className="mb2 pa1"
             value={email}
-            onChange={e => this.setState({ email: e.target.value })}
+            onChange={e => this.setInputState({ email: e.target.value })}
             type="email"
             placeholder="Email"
             name="email"
@@ -92,7 +95,7 @@ class Login extends React.Component {
           <input
             className="mb2 pa1"
             value={password}
-            onChange={e => this.setState({ password: e.target.value })}
+            onChange={e => this.setInputState({ password: e.target.value })}
             type="password"
             placeholder="Password"
             name="password"
@@ -103,12 +106,14 @@ class Login extends React.Component {
           <Mutation
             mutation={login ? LOGIN_MUTATION : REGISTER_MUTATION}
             variables={{ name, username, email, password }}
-            onCompleted={this.confirm}
+            onCompleted={this.handleCompleted}
+            onError={this.handleError}
           >
             {authMutation => (
               <button
                 className="mt4 br3 b--black bg-dark-blue white pa2 dim"
                 onClick={authMutation}
+                type="submit"
               >
                 {login ? 'Login' : 'Register'}
               </button>
@@ -117,7 +122,7 @@ class Login extends React.Component {
         </div>
         <button
           className="mt4 br3 b--black bg-dark-blue white pa1 dim"
-          onClick={e => this.setState({login: !login})}
+          onClick={e => this.setInputState({login: !login})}
         >
           {login ? 'Need to create an account?' : 'Already have an account?'}
         </button>
@@ -125,10 +130,19 @@ class Login extends React.Component {
     );
   }
 
-  confirm = async (data) => {
+  // Method to wrap setState
+  setInputState = (newState) => {
+    this.setState({errorMessage: '', ...newState});
+  }
+
+  handleCompleted = (data) => {
     const { token } = this.state.login ? data.login : data.register
     this.saveUserData(token);
     this.props.history.push('/');
+  }
+
+  handleError = (error) => {
+    this.setState({ errorMessage: error.message });
   }
 
   saveUserData = token => {
