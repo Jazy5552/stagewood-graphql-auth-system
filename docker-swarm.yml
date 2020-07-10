@@ -1,0 +1,44 @@
+# Uses a local .env file for variables
+version: '3.3'
+services:
+  stagewood-auth-backend:
+    build:
+      context: ./stagewood-auth-system-backend/
+      dockerfile: ./backend.dockerfile
+    image: stagewood-auth-backend:latest
+    environment:
+      PRISMA_DS_URL: ${PRISMA_DS_URL}
+      APP_SECRET: ${APP_SECRET}
+    networks:
+      - frontend
+      - backend
+
+  stagewood-auth-frontend:
+    build:
+      context: ./stagewood-auth-system-frontend/
+      dockerfile: ./frontend.dockerfile
+      args:
+        REACT_APP_HTTP_LINK_URL: ${REACT_APP_HTTP_LINK_URL}
+    image: stagewood-auth-frontend:latest
+    networks:
+      - frontend
+
+  sw-db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: ${MYSQL_RANDOM_ROOT_PASSWORD}
+    volumes:
+      - "backend-db:/var/lib/mysql"
+    networks:
+      - backend
+
+volumes:
+  backend-db:
+
+networks:
+  backend:
+  frontend:
+    external: true
